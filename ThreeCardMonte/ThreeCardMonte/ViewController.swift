@@ -23,48 +23,76 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var winLose: UILabel!
     
+    @IBAction func newGame(_ sender: UIButton) {
+         for card in arrayOfCards {
+         card.setBackgroundImage(UIImage(named: "cardBackRed"), for: .normal)
+         card.isEnabled = true
+         }
+
+
+         }
+    
+    
     @IBAction func cardGame(_ sender: UIButton) {
         let cardImages = ["threeCard", "kingCard", "threeCard"]
-        let shuffledCards = cardImages.shuffled()
+        let randomCard = cardImages.randomElement()
         
 
         
         switch sender.tag {
         case 0:
-          sender.setImage(UIImage(named: shuffledCards[0]), for: .normal)
-          if shuffledCards[0] == "kingCard" {
+          guard let unwrappedRandomCard = randomCard
+            else {
+                return
+          }
+          sender.setImage(UIImage(named: unwrappedRandomCard ), for: .normal)
+         
+          if randomCard == "kingCard" {
             winLose.text = "You Win!"
-          } else {
+          } else if randomCard == "threeCard" {
             winLose.text = "You Lose!"
             }
         case 1:
-            sender.setImage(UIImage(named: shuffledCards[1]), for: .normal)
-            if shuffledCards[1] == "kingCard" {
-              winLose.text = "You Win!"
-            } else {
-              winLose.text = "You Lose!"
-              }
+            guard let unwrappedRandomCard = randomCard
+               else {
+                   return
+             }
+             sender.setImage(UIImage(named: unwrappedRandomCard ), for: .normal)
+            
+             if randomCard == "kingCard" {
+               winLose.text = "You Win!"
+             } else if randomCard == "threeCard" {
+               winLose.text = "You Lose!"
+               }
         case 2:
-            sender.setImage(UIImage(named: shuffledCards[2]), for: .normal)
-            if shuffledCards[2] == "kingCard" {
-              winLose.text = "You Win!"
-            } else {
-              winLose.text = "You Lose!"
-              }
+            guard let unwrappedRandomCard = randomCard
+               else {
+                   return
+             }
+             sender.setImage(UIImage(named: unwrappedRandomCard ), for: .normal)
+            
+             if randomCard == "kingCard" {
+               winLose.text = "You Win!"
+             } else if randomCard == "threeCard" {
+               winLose.text = "You Lose!"
+                
+               }
         default:
             sender.setImage(UIImage(named: "threeCard"), for: .normal)
         }
-        
-        // disable other cards
-//        for card in arrayOfCards {
-//            card.isEnabled = false
-//        }
+        card1.isEnabled = false
+        card2.isEnabled = false
+        card3.isEnabled = false
     }
-    
-//    @IBAction func newGame(_ sender: UIButton) {
-//        // sender.tag
-//        sender.setBackgroundImage(UIImage(named: "cardBackRed"), for: .normal)
-//    }
     
 }
 
+
+
+//-----------------------
+// Current issues:
+
+// Still does not reset
+// Still does not disable the other cards after selection
+
+//-----------------------
