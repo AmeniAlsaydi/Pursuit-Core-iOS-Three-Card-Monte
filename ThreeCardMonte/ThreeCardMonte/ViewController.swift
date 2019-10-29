@@ -25,27 +25,22 @@ class ViewController: UIViewController {
     
     @IBAction func newGame(_ sender: UIButton) {
          for card in arrayOfCards {
-         card.setBackgroundImage(UIImage(named: "cardBackRed"), for: .normal)
+         card.setImage(UIImage(named: "cardBackRed"), for: .normal)
          card.isEnabled = true
          }
-
-
+        winLose.text = "Pick a card, any card!"
          }
     
     
     @IBAction func cardGame(_ sender: UIButton) {
         let cardImages = ["threeCard", "kingCard", "threeCard"]
-        let randomCard = cardImages.randomElement()
+        let randomCard = cardImages.randomElement() ?? "threeCard"
         
 
         
         switch sender.tag {
         case 0:
-          guard let unwrappedRandomCard = randomCard
-            else {
-                return
-          }
-          sender.setImage(UIImage(named: unwrappedRandomCard ), for: .normal)
+          sender.setImage(UIImage(named: randomCard ), for: .normal)
          
           if randomCard == "kingCard" {
             winLose.text = "You Win!"
@@ -53,11 +48,7 @@ class ViewController: UIViewController {
             winLose.text = "You Lose!"
             }
         case 1:
-            guard let unwrappedRandomCard = randomCard
-               else {
-                   return
-             }
-             sender.setImage(UIImage(named: unwrappedRandomCard ), for: .normal)
+             sender.setImage(UIImage(named: randomCard ), for: .normal)
             
              if randomCard == "kingCard" {
                winLose.text = "You Win!"
@@ -65,11 +56,7 @@ class ViewController: UIViewController {
                winLose.text = "You Lose!"
                }
         case 2:
-            guard let unwrappedRandomCard = randomCard
-               else {
-                   return
-             }
-             sender.setImage(UIImage(named: unwrappedRandomCard ), for: .normal)
+             sender.setImage(UIImage(named: randomCard ), for: .normal)
             
              if randomCard == "kingCard" {
                winLose.text = "You Win!"
@@ -92,7 +79,7 @@ class ViewController: UIViewController {
 //-----------------------
 // Current issues:
 
-// Still does not reset
-// Still does not disable the other cards after selection
-
+// Still does not reset properly - Shows them in over lap
+// Does not display the winning card ( maybe would work with a loop through the other cases to see which is a king?
+//
 //-----------------------
