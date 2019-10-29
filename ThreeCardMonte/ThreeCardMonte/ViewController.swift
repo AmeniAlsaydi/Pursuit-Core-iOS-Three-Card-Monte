@@ -33,10 +33,13 @@ class ViewController: UIViewController {
     
     
     @IBAction func cardGame(_ sender: UIButton) {
-        let cardImages = ["threeCard", "kingCard", "threeCard"]
+        var cardImages = ["threeCard", "kingCard", "threeCard"]
         let randomCard = cardImages.randomElement() ?? "threeCard"
         
-
+       cardImages.shuffle()
+        print(cardImages[0])
+        print(cardImages[1])
+        print(cardImages[2])
         
         switch sender.tag {
         case 0:
@@ -81,5 +84,5 @@ class ViewController: UIViewController {
 
 // Still does not reset properly - Shows them in over lap
 // Does not display the winning card ( maybe would work with a loop through the other cases to see which is a king?
-//
+// I think to display the winner card i should have given sender.tag = a shuffled value.
 //-----------------------
